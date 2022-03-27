@@ -22,3 +22,13 @@ export class Game {
         this.player1 = context.sender
     }
 }
+
+
+const games = new PersistentMap<u32, Game>("k")
+
+export function createGame(): u32 {
+    let game = new Game();
+    games.set(game.id, game)
+    // logging.log("Game ID is " + game.id.toString())
+    return game.id
+}
